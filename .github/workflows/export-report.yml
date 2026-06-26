@@ -1,0 +1,75 @@
+name: Exportar relatório CSV
+
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: "Data inicial (YYYY-MM-DD)"
+        required: true
+        type: string
+      end:
+        description: "Data final (YYYY-MM-DD)"
+        required: true
+        type: string
+      period:
+        description: "Período"
+        required: true
+        default: monthly
+        type: choice
+        options:
+          - daily
+          - weekly
+          - monthly
+          - quarterly
+          - semiannual
+          - annual
+      group_by:
+        description: "Agrupamento"
+        required: true
+        default: network
+        type: choice
+        options:
+          - network
+          - operator
+          - city
+          - site
+          - evse
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      TIMEZONE: Europe/Lisbon
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar aplicação
+        run: python -m pip install --disable-pip-version-check ".[postgres]"
+
+      - name: Criar CSV
+        run: |
+          mkdir -p reports
+          mobie-uptime report \
+            --start "${{ inputs.start }}" \
+            --end "${{ inputs.end }}" \
+            --period "${{ inputs.period }}" \
+            --group-by "${{ inputs.group_by }}" \
+            --output "reports/uptime_${{ inputs.period }}_${{ inputs.group_by }}.csv"
+
+      - name: Disponibilizar relatório
+        uses: actions/upload-artifact@v4
+        with:
+          name: uptime-${{ inputs.period }}-${{ inputs.group_by }}
+          path: reports/*.csv
+          retention-days: 30
