@@ -2,7 +2,9 @@ name: Recolher estados MOBI.E
 
 on:
   schedule:
-    - cron: : '*/5 * * * *'
+    # Frequência mínima suportada pelo agendamento do GitHub Actions.
+    # Use um repositório público para não consumir a quota de minutos privados.
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 concurrency:
@@ -30,12 +32,6 @@ jobs:
       HTTP_MAX_RETRIES: "3"
       USER_AGENT: mobie-uptime-free/0.2
     steps:
-      - name: Mostrar horário e tipo de execução
-        run: |
-          echo "Evento: ${{ github.event_name }}"
-          echo "Hora UTC: $(date -u '+%Y-%m-%d %H:%M:%S')"
-          echo "Hora Lisboa: $(TZ=Europe/Lisbon date '+%Y-%m-%d %H:%M:%S %Z')"
-
       - name: Obter código
         uses: actions/checkout@v4
 
