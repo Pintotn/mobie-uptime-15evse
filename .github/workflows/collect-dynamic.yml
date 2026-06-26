@@ -2,9 +2,7 @@ name: Recolher estados MOBI.E
 
 on:
   schedule:
-    # Frequência mínima suportada pelo agendamento do GitHub Actions.
-    # Use um repositório público para não consumir a quota de minutos privados.
-    - cron: "3-58/5 * * * *"
+    - cron: : '*/5 * * * *'
   workflow_dispatch:
 
 concurrency:
