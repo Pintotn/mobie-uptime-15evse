@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d2:payload xmlns:d2="http://datex2.eu/schema/3/common" xmlns:fac="http://datex2.eu/schema/3/facilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <fac:energyInfrastructureSite id="SITE-001">
+    <fac:name><fac:values><fac:value lang="pt-pt">Posto Central</fac:value></fac:values></fac:name>
+    <fac:operator xsi:type="fac:OrganisationSpecification" id="OP1">
+      <fac:name><fac:values><fac:value lang="pt-pt">Operador Um</fac:value></fac:values></fac:name>
+    </fac:operator>
+    <fac:locationReference xsi:type="fac:PointLocation">
+      <fac:pointByCoordinates><fac:pointCoordinates><fac:latitude>38.7223</fac:latitude><fac:longitude>-9.1393</fac:longitude></fac:pointCoordinates></fac:pointByCoordinates>
+      <fac:_locationReferenceExtension><fac:facilityLocation><fac:address>
+        <fac:city><fac:values><fac:value lang="pt-pt">Lisboa</fac:value></fac:values></fac:city>
+        <fac:postcode>1000-001</fac:postcode>
+        <fac:addressLine><fac:text><fac:values><fac:value lang="pt-pt">Rua Exemplo 1</fac:value></fac:values></fac:text></fac:addressLine>
+      </fac:address></fac:facilityLocation></fac:_locationReferenceExtension>
+    </fac:locationReference>
+    <fac:operatingHours xsi:type="fac:OpenAllHours"/>
+    <fac:energyInfrastructureStation id="STATION-001">
+      <fac:refillPoint xsi:type="fac:ElectricChargingPoint" id="EVSE-001">
+        <fac:externalIdentifier>PT*OP1*E0001*1</fac:externalIdentifier>
+        <fac:availableChargingPower>50</fac:availableChargingPower>
+        <fac:connector><fac:connectorType>iec62196T2Combo</fac:connectorType><fac:maxPowerAtSocket>50</fac:maxPowerAtSocket></fac:connector>
+      </fac:refillPoint>
+    </fac:energyInfrastructureStation>
+  </fac:energyInfrastructureSite>
+</d2:payload>

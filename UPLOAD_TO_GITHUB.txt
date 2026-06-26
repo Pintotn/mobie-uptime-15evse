@@ -1,0 +1,10 @@
+VERSÃO GRATUITA
+
+1. Descompacte o ZIP.
+2. Abra a pasta mobie_uptime_free.
+3. No GitHub, crie um repositório privado.
+4. Escolha Add file > Upload files.
+5. Carregue TODOS os ficheiros e pastas que estão dentro da pasta.
+6. Confirme que .github/workflows também foi carregada.
+7. Não carregue ficheiros .env nem connection strings da base de dados.
+8. Leia GUIA_GRATUITO.md.

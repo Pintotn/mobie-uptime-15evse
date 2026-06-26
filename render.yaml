@@ -1,0 +1,25 @@
+# Blueprint gratuito: apenas a API web no Render.
+# A recolha é feita por GitHub Actions e os dados ficam numa base Neon Free.
+
+services:
+  - type: web
+    name: mobie-uptime-api
+    runtime: docker
+    region: frankfurt
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: sh -c 'uvicorn mobie_uptime.api:app --host 0.0.0.0 --port ${PORT:-10000}'
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: TIMEZONE
+        value: Europe/Lisbon
+      - key: SAVE_RAW_STATIC
+        value: "false"
+      - key: SAVE_RAW_DYNAMIC
+        value: "false"
+      - key: USER_AGENT
+        value: mobie-uptime-free/0.2

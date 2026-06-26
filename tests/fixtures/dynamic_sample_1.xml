@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d2:payload xmlns:d2="http://datex2.eu/schema/3/common" xmlns:fac="http://datex2.eu/schema/3/facilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <d2:publicationTime>2026-01-01T00:00:00Z</d2:publicationTime>
+  <fac:energyInfrastructureSiteStatus>
+    <fac:reference targetClass="FacilityObject" id="SITE-001"/>
+    <fac:energyInfrastructureStationStatus>
+      <fac:reference targetClass="FacilityObject" id="STATION-001"/>
+      <fac:refillPointStatus xsi:type="fac:ElectricChargingPointStatus">
+        <fac:reference targetClass="FacilityObject" id="EVSE-001"/>
+        <fac:status>available</fac:status>
+      </fac:refillPointStatus>
+    </fac:energyInfrastructureStationStatus>
+  </fac:energyInfrastructureSiteStatus>
+</d2:payload>

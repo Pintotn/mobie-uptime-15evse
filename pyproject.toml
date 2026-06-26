@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mobie-uptime"
+version = "0.2.0"
+description = "Recolha DATEX II da MOBI.E e cálculo de uptime por EVSE e por rede"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "Projeto MOBI.E Uptime"}]
+dependencies = [
+  "fastapi>=0.115",
+  "httpx>=0.27",
+  "lxml>=5.3",
+  "pydantic-settings>=2.7",
+  "sqlalchemy>=2.0",
+  "typer>=0.15",
+  "uvicorn[standard]>=0.34",
+]
+
+[project.optional-dependencies]
+postgres = ["psycopg[binary]>=3.2"]
+dev = ["pytest>=8.3", "ruff>=0.9"]
+
+[project.scripts]
+mobie-uptime = "mobie_uptime.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
